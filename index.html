@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Title</title>
+</head>
+<body>
+<script src="js/darkmode.js"></script>
+<button onclick="darkModeBtn()">Dark Mode</button>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+
+<div class="container-week">
+    <div class="container-monday">
+        <div id="rootMon">
+            <h1>{{monday}}</h1>
+            <div class="todo-lists" v-if="exercise.length">
+                <h3>Workout Routine</h3>
+                <form name="todo-form" method="post" action="" v-on:submit.prevent="addExer">
+                    <input name="add-todo" type="text" v-model="newExer" v-bind:class="{error: hasError}"/>
+
+                    <button type="submit">Add</button>
+                </form>
+                <ul>
+                    <li v-for="list in filterLists" :key="list.id">
+                        <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                        <span class="title" contenteditable="true" v-on:keydown.enter="updateTasks($event, list)" v-on:blur="updateTasks($event, list)" v-bind:class="{completed: list.isComplete}">{{list.title}}</span>
+                        <span class="remove" v-on:click="removeTask(list)">x</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var routine = new Vue({
+            el: '#rootMon',
+            data: {
+                monday: 'Monday',
+                newExer:'',
+                exercise: [],
+                hasError: false,
+            },
+            computed: {
+                filterLists: function(){
+                    return _.orderBy(this.exercise, ['isComplete', false])
+                }
+            },
+
+            methods: {
+                addExer: function(){
+                    if(!this.newExer){
+                        this.hasError = true;
+                        return;
+                    }
+                    this.hasError = false;
+
+                    this.exercise.push({
+                        id: this.exercise.length+1,
+                        title: this.newExer,
+                        isComplete:false
+                    })
+                    this.newExer = '';
+                },
+                updateTasks: function (e, list){
+                    e.preventDefault();
+                    list.title = e.target.innerText;
+                    e.target.blur();
+                },
+                completeTask: function(list){
+                    list.isComplete = !list.isComplete;
+                },
+                removeTask: function(list){
+                    var index = _.findIndex(this.exercise, list);
+                    this.exercise.splice(index, 1);
+                }
+            }
+        })
+        routine.exercise = [{
+            id: 1,
+            title: 'Add Routine',
+            isComplete: false
+        }];
+    </script>
+
+
+    <div class="container-tuesday">
+        <div id="rootTue">
+            <h1>{{tuesday}}</h1>
+            <div class="todo-lists" v-if="exercise.length">
+                <h3>Workout Routine</h3>
+                <form name="todo-form" method="post" action="" v-on:submit.prevent="addExer">
+                    <input name="add-todo" type="text" v-model="newExer" v-bind:class="{error: hasError}"/>
+
+                    <button type="submit">Add</button>
+                </form>
+                <ul>
+                    <li v-for="list in filterLists" :key="list.id">
+                        <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                        <span class="title" contenteditable="true" v-on:keydown.enter="updateTasks($event, list)" v-on:blur="updateTasks($event, list)" v-bind:class="{completed: list.isComplete}">{{list.title}}</span>
+                        <span class="remove" v-on:click="removeTask(list)">x</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var routine = new Vue({
+            el: '#rootTue',
+            data: {
+                tuesday: 'Tuesday',
+                newExer:'',
+                exercise: [],
+                hasError: false,
+            },
+            computed: {
+                filterLists: function(){
+                    return _.orderBy(this.exercise, ['isComplete', false])
+                }
+            },
+
+            methods: {
+                addExer: function(){
+                    if(!this.newExer){
+                        this.hasError = true;
+                        return;
+                    }
+                    this.hasError = false;
+
+                    this.exercise.push({
+                        id: this.exercise.length+1,
+                        title: this.newExer,
+                        isComplete:false
+                    })
+                    this.newExer = '';
+                },
+                updateTasks: function (e, list){
+                    e.preventDefault();
+                    list.title = e.target.innerText;
+                    e.target.blur();
+                },
+                completeTask: function(list){
+                    list.isComplete = !list.isComplete;
+                },
+                removeTask: function(list){
+                    var index = _.findIndex(this.exercise, list);
+                    this.exercise.splice(index, 1);
+                }
+            }
+        })
+        routine.exercise = [{
+            id: 1,
+            title: 'Add Routine',
+            isComplete: false
+        }];
+    </script>
+
+
+    <div class="container-wednesday">
+        <div id="rootWed">
+            <h1>{{wednesday}}</h1>
+            <div class="todo-lists" v-if="exercise.length">
+                <h3>Workout Routine</h3>
+                <form name="todo-form" method="post" action="" v-on:submit.prevent="addExer">
+                    <input name="add-todo" type="text" v-model="newExer" v-bind:class="{error: hasError}"/>
+
+                    <button type="submit">Add</button>
+                </form>
+                <ul>
+                    <li v-for="list in filterLists" :key="list.id">
+                        <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                        <span class="title" contenteditable="true" v-on:keydown.enter="updateTasks($event, list)" v-on:blur="updateTasks($event, list)" v-bind:class="{completed: list.isComplete}">{{list.title}}</span>
+                        <span class="remove" v-on:click="removeTask(list)">x</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var routine = new Vue({
+            el: '#rootWed',
+            data: {
+                wednesday: 'Wednesday',
+                newExer:'',
+                exercise: [],
+                hasError: false,
+            },
+            computed: {
+                filterLists: function(){
+                    return _.orderBy(this.exercise, ['isComplete', false])
+                }
+            },
+
+            methods: {
+                addExer: function(){
+                    if(!this.newExer){
+                        this.hasError = true;
+                        return;
+                    }
+                    this.hasError = false;
+
+                    this.exercise.push({
+                        id: this.exercise.length+1,
+                        title: this.newExer,
+                        isComplete:false
+                    })
+                    this.newExer = '';
+                },
+                updateTasks: function (e, list){
+                    e.preventDefault();
+                    list.title = e.target.innerText;
+                    e.target.blur();
+                },
+                completeTask: function(list){
+                    list.isComplete = !list.isComplete;
+                },
+                removeTask: function(list){
+                    var index = _.findIndex(this.exercise, list);
+                    this.exercise.splice(index, 1);
+                }
+            }
+        })
+        routine.exercise = [{
+            id: 1,
+            title: 'Add Routine',
+            isComplete: false
+        }];
+    </script>
+
+
+    <div class="container-thursday">
+        <div id="rootThu">
+            <h1>{{thursday}}</h1>
+            <div class="todo-lists" v-if="exercise.length">
+                <h3>Workout Routine</h3>
+                <form name="todo-form" method="post" action="" v-on:submit.prevent="addExer">
+                    <input name="add-todo" type="text" v-model="newExer" v-bind:class="{error: hasError}"/>
+
+                    <button type="submit">Add</button>
+                </form>
+                <ul>
+                    <li v-for="list in filterLists" :key="list.id">
+                        <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                        <span class="title" contenteditable="true" v-on:keydown.enter="updateTasks($event, list)" v-on:blur="updateTasks($event, list)" v-bind:class="{completed: list.isComplete}">{{list.title}}</span>
+                        <span class="remove" v-on:click="removeTask(list)">x</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var routine = new Vue({
+            el: '#rootThu',
+            data: {
+                thursday: 'Thursday',
+                newExer:'',
+                exercise: [],
+                hasError: false,
+            },
+            computed: {
+                filterLists: function(){
+                    return _.orderBy(this.exercise, ['isComplete', false])
+                }
+            },
+
+            methods: {
+                addExer: function(){
+                    if(!this.newExer){
+                        this.hasError = true;
+                        return;
+                    }
+                    this.hasError = false;
+
+                    this.exercise.push({
+                        id: this.exercise.length+1,
+                        title: this.newExer,
+                        isComplete:false
+                    })
+                    this.newExer = '';
+                },
+                updateTasks: function (e, list){
+                    e.preventDefault();
+                    list.title = e.target.innerText;
+                    e.target.blur();
+                },
+                completeTask: function(list){
+                    list.isComplete = !list.isComplete;
+                },
+                removeTask: function(list){
+                    var index = _.findIndex(this.exercise, list);
+                    this.exercise.splice(index, 1);
+                }
+            }
+        })
+        routine.exercise = [{
+            id: 1,
+            title: 'Add Routine',
+            isComplete: false
+        }];
+    </script>
+
+
+    <div class="container-friday">
+        <div id="rootFri">
+            <h1>{{friday}}</h1>
+            <div class="todo-lists" v-if="exercise.length">
+                <h3>Workout Routine</h3>
+                <form name="todo-form" method="post" action="" v-on:submit.prevent="addExer">
+                    <input name="add-todo" type="text" v-model="newExer" v-bind:class="{error: hasError}"/>
+
+                    <button type="submit">Add</button>
+                </form>
+                <ul>
+                    <li v-for="list in filterLists" :key="list.id">
+                        <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                        <span class="title" contenteditable="true" v-on:keydown.enter="updateTasks($event, list)" v-on:blur="updateTasks($event, list)" v-bind:class="{completed: list.isComplete}">{{list.title}}</span>
+                        <span class="remove" v-on:click="removeTask(list)">x</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var routine = new Vue({
+            el: '#rootFri',
+            data: {
+                friday: 'Friday',
+                newExer:'',
+                exercise: [],
+                hasError: false,
+            },
+            computed: {
+                filterLists: function(){
+                    return _.orderBy(this.exercise, ['isComplete', false])
+                }
+            },
+
+            methods: {
+                addExer: function(){
+                    if(!this.newExer){
+                        this.hasError = true;
+                        return;
+                    }
+                    this.hasError = false;
+
+                    this.exercise.push({
+                        id: this.exercise.length+1,
+                        title: this.newExer,
+                        isComplete:false
+                    })
+                    this.newExer = '';
+                },
+                updateTasks: function (e, list){
+                    e.preventDefault();
+                    list.title = e.target.innerText;
+                    e.target.blur();
+                },
+                completeTask: function(list){
+                    list.isComplete = !list.isComplete;
+                },
+                removeTask: function(list){
+                    var index = _.findIndex(this.exercise, list);
+                    this.exercise.splice(index, 1);
+                }
+            }
+        })
+        routine.exercise = [{
+            id: 1,
+            title: 'Add Routine',
+            isComplete: false
+        }];
+    </script>
+
+
+    <div class="container-saturday">
+        <div id="rootSat">
+            <h1>{{saturday}}</h1>
+            <div class="todo-lists" v-if="exercise.length">
+                <h3>Workout Routine</h3>
+                <form name="todo-form" method="post" action="" v-on:submit.prevent="addExer">
+                    <input name="add-todo" type="text" v-model="newExer" v-bind:class="{error: hasError}"/>
+
+                    <button type="submit">Add</button>
+                </form>
+                <ul>
+                    <li v-for="list in filterLists" :key="list.id">
+                        <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                        <span class="title" contenteditable="true" v-on:keydown.enter="updateTasks($event, list)" v-on:blur="updateTasks($event, list)" v-bind:class="{completed: list.isComplete}">{{list.title}}</span>
+                        <span class="remove" v-on:click="removeTask(list)">x</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var routine = new Vue({
+            el: '#rootSat',
+            data: {
+                saturday: 'Saturday',
+                newExer:'',
+                exercise: [],
+                hasError: false,
+            },
+            computed: {
+                filterLists: function(){
+                    return _.orderBy(this.exercise, ['isComplete', false])
+                }
+            },
+
+            methods: {
+                addExer: function(){
+                    if(!this.newExer){
+                        this.hasError = true;
+                        return;
+                    }
+                    this.hasError = false;
+
+                    this.exercise.push({
+                        id: this.exercise.length+1,
+                        title: this.newExer,
+                        isComplete:false
+                    })
+                    this.newExer = '';
+                },
+                updateTasks: function (e, list){
+                    e.preventDefault();
+                    list.title = e.target.innerText;
+                    e.target.blur();
+                },
+                completeTask: function(list){
+                    list.isComplete = !list.isComplete;
+                },
+                removeTask: function(list){
+                    var index = _.findIndex(this.exercise, list);
+                    this.exercise.splice(index, 1);
+                }
+            }
+        })
+        routine.exercise = [{
+            id: 1,
+            title: 'Add Routine',
+            isComplete: false
+        }];
+    </script>
+
+
+    <div class="container-sunday">
+        <div id="rootSun">
+            <h1>{{sunday}}</h1>
+            <div class="todo-lists" v-if="exercise.length">
+                <h3>Workout Routine</h3>
+                <form name="todo-form" method="post" action="" v-on:submit.prevent="addExer">
+                    <input name="add-todo" type="text" v-model="newExer" v-bind:class="{error: hasError}"/>
+
+                    <button type="submit">Add</button>
+                </form>
+                <ul>
+                    <li v-for="list in filterLists" :key="list.id">
+                        <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                        <span class="title" contenteditable="true" v-on:keydown.enter="updateTasks($event, list)" v-on:blur="updateTasks($event, list)" v-bind:class="{completed: list.isComplete}">{{list.title}}</span>
+                        <span class="remove" v-on:click="removeTask(list)">x</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var routine = new Vue({
+            el: '#rootSun',
+            data: {
+                sunday: 'Sunday',
+                newExer:'',
+                exercise: [],
+                hasError: false,
+            },
+            computed: {
+                filterLists: function(){
+                    return _.orderBy(this.exercise, ['isComplete', false])
+                }
+            },
+
+            methods: {
+                addExer: function(){
+                    if(!this.newExer){
+                        this.hasError = true;
+                        return;
+                    }
+                    this.hasError = false;
+
+                    this.exercise.push({
+                        id: this.exercise.length+1,
+                        title: this.newExer,
+                        isComplete:false
+                    })
+                    this.newExer = '';
+                },
+                updateTasks: function (e, list){
+                    e.preventDefault();
+                    list.title = e.target.innerText;
+                    e.target.blur();
+                },
+                completeTask: function(list){
+                    list.isComplete = !list.isComplete;
+                },
+                removeTask: function(list){
+                    var index = _.findIndex(this.exercise, list);
+                    this.exercise.splice(index, 1);
+                }
+            }
+        })
+        routine.exercise = [{
+            id: 1,
+            title: 'Add Routine',
+            isComplete: false
+        }];
+    </script>
+
+
+    <div class="weekly-button">
+    <div id="w-button">
+        <button-counter></button-counter>
+    </div>
+</div>
+    <script>
+    Vue.component('button-counter', {
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">Completed routine {{ count }} weeks</button>'
+    })
+    new Vue({el: '#w-button'})
+</script>
+</div>
+</body>
+</html>

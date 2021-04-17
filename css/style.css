@@ -1,0 +1,102 @@
+body {
+    padding: 25px;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+}
+
+.dark-mode {
+    background-color: #282828;
+    color: white;
+}
+.container-week{
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+    justify-content: center;
+    margin-right: 150px;
+    margin-left: 80px;
+}
+.container-monday{
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.container-tuesday{
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.container-wednesday{
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.container-thursday{
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.container-friday{
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.container-saturday{
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.container-sunday{
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.weekly-button {
+    border-radius: 1px;
+    background-color: #0466D4;
+    border: none;
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+    font-size: 8px;
+    padding: 2px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    position: relative;
+}
+.remove {
+    cursor: pointer;
+    display: inline-block;
+    border: 1px solid #c4c4c4;
+    border-radius: 50%;
+    padding: 0px 4px;
+}
+
+@media screen and (max-width: 1000px){
+    .container-week {
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        justify-self: center;
+        width: 100%;
+        margin: 0 auto;
+        height: 90vh;
+    }
+}
+@media screen and (max-width: 480px){
+    .container-week{
+        display: grid;
+        margin: 16px;
+        padding: 10px;
+        width: 160px;
+    }
+
+}
